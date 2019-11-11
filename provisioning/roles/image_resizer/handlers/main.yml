@@ -1,0 +1,6 @@
+---
+- name: restart image resizer
+  service:
+      name: image_resizer
+      state: reloaded
+      enabled: yes

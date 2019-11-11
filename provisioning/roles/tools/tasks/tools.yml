@@ -1,0 +1,6 @@
+---
+- name: Install necessary tools
+  apt:
+      name: ['mc', 'htop', 'curl', 'vim']
+      state: latest
+      update_cache: yes

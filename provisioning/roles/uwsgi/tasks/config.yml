@@ -1,0 +1,12 @@
+---
+- name: Copy uWSGI ini file
+  copy:
+      src: files/uwsgi.ini
+      dest: /opt/uwsgi.ini
+
+- name: Copy service file
+  copy:
+      src: files/uwsgi_wiating.service
+      dest: /etc/systemd/system/uwsgi_wiating.service
+  notify:
+      - restart uwsgi wiating

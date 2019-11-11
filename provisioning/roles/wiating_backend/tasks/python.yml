@@ -1,0 +1,11 @@
+---
+- name: Copy package files
+  copy:
+      src: files/wiating_backend
+      dest: /opt
+
+- name: Install wiating_backend package
+  pip:
+      name: file:///opt/wiating_backend
+      virtualenv: /opt/venvs/wiating_backend
+      virtualenv_python: python3

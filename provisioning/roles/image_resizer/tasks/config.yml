@@ -1,0 +1,7 @@
+---
+- name: Copy service file
+  copy:
+      src: files/image_resizer.service
+      dest: /etc/systemd/system/image_resizer.service
+  notify:
+      - restart image resizer

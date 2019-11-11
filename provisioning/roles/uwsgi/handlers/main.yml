@@ -1,0 +1,6 @@
+---
+- name: restart uwsgi wiating
+  service:
+      name: uwsgi_wiating
+      state: reloaded
+      enabled: yes

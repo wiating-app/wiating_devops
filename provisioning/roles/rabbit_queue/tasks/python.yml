@@ -1,0 +1,17 @@
+---
+- name: Copy package files
+  copy:
+      src: files/rabbit_queue
+      dest: /opt
+
+- name: Install rabbit_queue package for wiating backend
+  pip:
+      name: file:///opt/rabbit_queue
+      virtualenv: /opt/venvs/wiating_backend
+      virtualenv_python: python3
+
+- name: Install rabbit_queue package for image resizer
+  pip:
+      name: file:///opt/rabbit_queue
+      virtualenv: /opt/venvs/image_resizer
+      virtualenv_python: python3
