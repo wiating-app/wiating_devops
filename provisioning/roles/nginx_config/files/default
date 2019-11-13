@@ -55,7 +55,7 @@ server {
 	location /wiating { try_files $uri @wiating; }
 	location @wiating {
 	  include uwsgi_params;
-	  uwsgi_pass unix:/opt/wiating/wiating.sock;
+	  uwsgi_pass unix:/tmp/wiating.sock;
 	}
 
 	# pass PHP scripts to FastCGI server
