@@ -2,5 +2,7 @@
 - name: restart uwsgi wiating
   service:
       name: uwsgi_wiating
-      state: reloaded
+      state: restarted
       enabled: yes
+      daemon_reload: yes
+  become: yes

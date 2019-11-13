@@ -5,3 +5,4 @@
       dest: /etc/systemd/system/image_resizer.service
   notify:
       - restart image resizer
+  become: yes

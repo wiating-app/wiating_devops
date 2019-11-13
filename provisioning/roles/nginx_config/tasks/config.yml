@@ -5,9 +5,11 @@
     regexp: 'client_max_body_size'
     insertafter: '^http {'
     line: '    client_max_body_size 10m;'
+  become: yes
 
 - name: Copy site config
   copy:
       src: files/default
       dest: /etc/nginx/conf.d/default.conf
       force: yes
+  become: yes

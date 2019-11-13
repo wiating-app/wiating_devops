@@ -1,15 +1,12 @@
 ---
 - hosts: all
-  become: true
-  roles: 
-
-- hosts: all
-  become: true
   roles:
       - role: tools
       - role: python
       - role: geerlingguy.rabbitmq
+        become: yes
       - role: nginxinc.nginx
+        become: yes
       - role: nginx_config
       - role: rabbit_queue
       - role: wiating_backend

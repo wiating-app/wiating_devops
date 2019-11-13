@@ -3,8 +3,10 @@
   apt:
       name: ['build-essential', 'python-dev']
       state: latest
+  become: yes
 
 - name: Install uWSGI
   pip:
       name: uwsgi
       executable: pip3
+  become: yes

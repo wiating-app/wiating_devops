@@ -1,11 +1,20 @@
 ---
+- name: Create a directory if it does not exist
+  file:
+    path: /opt/wiating
+    state: directory
+    mode: '0750'
+    owner: admin
+    group: admin
+  become: yes
+
 - name: Copy package files
   copy:
       src: files/wiating_backend
-      dest: /opt
+      dest: /opt/wiating
 
 - name: Install wiating_backend package
   pip:
-      name: file:///opt/wiating_backend
-      virtualenv: /opt/venvs/wiating_backend
+      name: file:///opt/wiating/wiating_backend
+      virtualenv: /opt/wiating/venvs/wiating_backend
       virtualenv_python: python3

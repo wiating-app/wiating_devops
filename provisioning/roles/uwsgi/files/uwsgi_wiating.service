@@ -3,10 +3,12 @@ Description=Wiating uWSGI
 After=network.target
 
 [Service]
-WorkingDirectory=/opt
+User=admin
+Group=admin
+WorkingDirectory=/opt/wiating
 Type=simple
 Restart=always
-ExecStart=/usr/local/bin/uwsgi /opt/uwsgi.ini
+ExecStart=/usr/local/bin/uwsgi /opt/wiating/uwsgi.ini
 
 [Install]
 WantedBy=multi-user.target

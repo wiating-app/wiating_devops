@@ -2,10 +2,10 @@
 - name: Copy package files
   copy:
       src: files/image_resizer
-      dest: /opt
+      dest: /opt/wiating
 
 - name: Install image_resizer package
   pip:
-      name: file:///opt/image_resizer
-      virtualenv: /opt/venvs/image_resizer
+      name: file:///opt/wiating/image_resizer
+      virtualenv: /opt/wiating/venvs/image_resizer
       virtualenv_python: python3

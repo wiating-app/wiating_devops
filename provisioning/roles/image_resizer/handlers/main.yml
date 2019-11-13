@@ -2,5 +2,7 @@
 - name: restart image resizer
   service:
       name: image_resizer
-      state: reloaded
+      state: restarted
       enabled: yes
+      daemon_reload: yes
+  become: yes

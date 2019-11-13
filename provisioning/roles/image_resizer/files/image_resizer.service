@@ -3,7 +3,9 @@ Description=Image resizer for wiating
 After=rabbitmq-server.service
 
 [Service]
-ExecStart=/opt/venvs/image_resizer/bin/python -m image_resizer
+User=admin
+Group=admin
+ExecStart=/opt/wiating/venvs/image_resizer/bin/python -m image_resizer
 Restart=always
 Type=simple
 

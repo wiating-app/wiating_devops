@@ -4,3 +4,4 @@
       name: ['mc', 'htop', 'curl', 'vim']
       state: latest
       update_cache: yes
+  become: yes
