@@ -1,0 +1,95 @@
+---
+- name: Put elasticsearch index mapping
+  shell: |
+      curl -X PUT "localhost:9200/wiaty?pretty" -H 'Content-Type: application/json' -d'
+      { 
+        "settings": { 
+          "index": { 
+            "number_of_replicas": 0, 
+          } 
+        }, 
+        "mappings": { 
+          "properties": { 
+            "name": { 
+              "type": "text", 
+              "analyzer": "polish", 
+              "fields": { 
+                "raw": { 
+                  "type": "keyword" 
+                } 
+              } 
+            }, 
+            "description": { 
+              "type": "text", 
+              "analyzer": "polish" 
+            }, 
+            "directions": { 
+              "type": "text", 
+              "analyzer": "polish" 
+            }, 
+            "location": { 
+              "type": "geo_point" 
+            }, 
+            "type": { 
+              "type": "keyword" 
+            }, 
+            "water": { 
+              "properties": { 
+                "exists": { 
+                  "type": "boolean" 
+                }, 
+                "comment": { 
+                  "type": "text", 
+                  "analyzer": "polish", 
+                  "fields": { 
+                    "raw": { 
+                      "type": "keyword" 
+                    } 
+                  } 
+                } 
+              } 
+            }, 
+            "fire": { 
+              "properties": { 
+                "exists": { 
+                  "type": "boolean" 
+                }, 
+                "comment": { 
+                  "type": "text", 
+                  "analyzer": "polish", 
+                  "fields": { 
+                    "raw": { 
+                      "type": "keyword" 
+                    } 
+                  } 
+                } 
+              } 
+            }, 
+            "created_timestamp": { 
+              "type": "date" 
+            }, 
+            "created_by": { 
+              "type": "keyword" 
+            }, 
+            "last_modified_timestamp": { 
+              "type": "date" 
+            }, 
+            "last_modified_by": { 
+              "type": "keyword" 
+            }, 
+            "images": { 
+              "properties": { 
+                "name": { 
+                  "type": "keyword" 
+                }, 
+                "created_timestamp": { 
+                  "type": "date" 
+                }, 
+                "created_by": { 
+                  "type": "keyword" 
+                } 
+              } 
+            } 
+          } 
+        } 
+      }

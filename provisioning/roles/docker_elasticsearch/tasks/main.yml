@@ -1,0 +1,3 @@
+---
+- include: elastic.yml
+- include: create_index.yml
