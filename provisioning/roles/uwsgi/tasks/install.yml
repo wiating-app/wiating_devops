@@ -1,7 +1,7 @@
 ---
 - name: Install dependencies
   apt:
-      name: ['build-essential', 'python-dev']
+      name: ['build-essential', 'python-dev', 'python3-setuptools']
       state: latest
   become: yes
 

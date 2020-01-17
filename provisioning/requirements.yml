@@ -1,4 +1,6 @@
 ---
 - src: geerlingguy.rabbitmq
 
+- src: geerlingguy.docker
+
 - src: nginxinc.nginx

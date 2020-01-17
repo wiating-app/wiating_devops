@@ -5,6 +5,8 @@
       - role: python
       - role: geerlingguy.rabbitmq
         become: yes
+        vars:
+            rabbitmq_version: "3.7.23"
       - role: nginxinc.nginx
         become: yes
       - role: nginx_config

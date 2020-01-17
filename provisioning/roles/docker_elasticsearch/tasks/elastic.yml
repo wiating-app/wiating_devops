@@ -1,12 +1,44 @@
 ---
+- name: Install pip
+  apt:
+      state: present
+      name: ['build-essential', 'python-dev', 'python-pip', 'python-setuptools', 'python-yaml', 'python-docker', 'python-subprocess32']
+  become: yes
+
+- name: Install docker_compose module dependencies
+  pip:
+      name: ['wheel', 'docker-compose']
+  become: yes
+
+- name: Add admin user to docker group
+  user:
+    name: admin
+    groups: docker
+    append: yes
+  become: yes
+
+- name: Create a directory for docker files
+  file:
+    path: /opt/elastic
+    state: directory
+    mode: '0740'
+    owner: admin
+    group: admin
+  become: yes
+
+- name: Copy docker files to machine
+  copy:
+      src: elastic/
+      dest: /opt/elastic/
+
 - name: Tear down existing services
   docker_compose:
-    project_src: elastic
+    project_src: /opt/elastic
     state: absent
 
 - name: Create and start services
   docker_compose:
-    project_src: elastic
+    project_src: /opt/elastic
   register: output
 
 - debug:
@@ -14,7 +46,7 @@
 
 - name: Run `docker-compose up` again
   docker_compose:
-    project_src: elastic
+    project_src: /opt/elastic
     build: no
   register: output
 
@@ -26,7 +58,7 @@
 
 - name: Stop all services
   docker_compose:
-    project_src: elastic
+    project_src: /opt/elastic
     build: no
     stopped: yes
   register: output
@@ -36,11 +68,11 @@
 
 - assert:
     that:
-      - "not elastic.elasticsearch_1.state.running"
+      - "not elasticsearch.elastic_elasticsearch_1.state.running"
 
 - name: Restart services
   docker_compose:
-    project_src: elastic
+    project_src: /opt/elastic
     build: no
     restarted: yes
   register: output
@@ -50,4 +82,9 @@
 
 - assert:
     that:
-      - "elastic.elasticsearch_1.state.running"
+      - "elasticsearch.elastic_elasticsearch_1.state.running"
+
+- name: Wait for port 9200 to become open on the host, don't start checking for 20 seconds
+  wait_for:
+    port: 9200
+    delay: 20
