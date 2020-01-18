@@ -7,6 +7,15 @@
     line: '    client_max_body_size 10m;'
   become: yes
 
+- name: Create directory for static files
+  file:
+    path: /var/www/wiating/html/images
+    state: directory
+    mode: '0755'
+    owner: admin
+    group: www-data
+  become: yes
+
 - name: Copy site config
   copy:
       src: files/default
