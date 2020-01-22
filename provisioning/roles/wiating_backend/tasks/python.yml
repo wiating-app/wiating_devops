@@ -15,6 +15,6 @@
 
 - name: Install wiating_backend package
   pip:
-      name: file:///opt/wiating/wiating_backend
+      name: git+https://github.com/merito/wiating_backend.git
       virtualenv: /opt/wiating/venvs/wiating_backend
       virtualenv_python: python3

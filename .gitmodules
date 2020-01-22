@@ -1,9 +1,0 @@
-[submodule "provisioning/roles/wiating_backend/files/wiating_backend"]
-	path = provisioning/roles/wiating_backend/files/wiating_backend
-	url = git@github.com:merito/wiating_backend.git
-[submodule "provisioning/roles/rabbit_queue/files/rabbit_queue"]
-	path = provisioning/roles/rabbit_queue/files/rabbit_queue
-	url = git@github.com:merito/rabbit_queue.git
-[submodule "provisioning/roles/image_resizer/files/image_resizer"]
-	path = provisioning/roles/image_resizer/files/image_resizer
-	url = git@github.com:merito/image_resizer.git
