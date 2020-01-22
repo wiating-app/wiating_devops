@@ -8,11 +8,6 @@
     group: admin
   become: yes
 
-- name: Copy package files
-  copy:
-      src: files/wiating_backend
-      dest: /opt/wiating
-
 - name: Install wiating_backend package
   pip:
       name: git+https://github.com/merito/wiating_backend.git

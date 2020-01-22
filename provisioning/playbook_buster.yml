@@ -15,7 +15,6 @@
         vars:
             docker_install_compose: true
       - role: docker_elasticsearch
-      - role: rabbit_queue
       - role: wiating_backend
       - role: image_resizer
       - role: uwsgi
