@@ -14,3 +14,6 @@
       state: forcereinstall
       virtualenv: /opt/wiating/venvs/wiating_backend
       virtualenv_python: python3
+
+- name: Import and run uwsgi handler
+  import_tasks: roles/uwsgi/handlers/main.yml

@@ -12,6 +12,8 @@
   copy:
       src: files/uwsgi.ini
       dest: /opt/wiating/uwsgi.ini
+  notify:
+      - restart uwsgi wiating
 
 - name: Copy service file
   copy:
