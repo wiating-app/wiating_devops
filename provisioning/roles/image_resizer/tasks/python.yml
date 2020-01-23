@@ -2,5 +2,6 @@
 - name: Install image_resizer package
   pip:
       name: git+https://github.com/merito/image_resizer.git
+      state: forcereinstall
       virtualenv: /opt/wiating/venvs/image_resizer
       virtualenv_python: python3
