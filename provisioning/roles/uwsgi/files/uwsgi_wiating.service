@@ -8,7 +8,7 @@ Group=admin
 WorkingDirectory=/opt/wiating
 Type=simple
 Restart=always
-ExecStart=/usr/local/bin/uwsgi /opt/wiating/uwsgi.ini
+ExecStart=/usr/local/bin/uwsgi /opt/wiating/uwsgi.ini --enable-threads
 
 [Install]
 WantedBy=multi-user.target
