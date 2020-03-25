@@ -5,3 +5,4 @@
       state: forcereinstall
       virtualenv: /opt/wiating/venvs/image_resizer
       virtualenv_python: python3
+  notify: restart image resizer
