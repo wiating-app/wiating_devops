@@ -1,7 +1,7 @@
 { 
   "settings": { 
     "index": { 
-      "number_of_replicas": 0, 
+      "number_of_replicas": 0,
     } 
   }, 
   "mappings": { 
@@ -29,35 +29,27 @@
       "type": { 
         "type": "keyword" 
       }, 
-      "water": { 
-        "properties": { 
-          "exists": { 
-            "type": "boolean" 
-          }, 
-          "comment": { 
-            "type": "text", 
-            "analyzer": "polish", 
-            "fields": { 
-              "raw": { 
-                "type": "keyword" 
-              } 
-            } 
+      "water_exists": { 
+        "type": "boolean" 
+      }, 
+      "water_comment": { 
+        "type": "text", 
+        "analyzer": "polish", 
+        "fields": { 
+          "raw": { 
+            "type": "keyword" 
           } 
         } 
       }, 
-      "fire": { 
-        "properties": { 
-          "exists": { 
-            "type": "boolean" 
-          }, 
-          "comment": { 
-            "type": "text", 
-            "analyzer": "polish", 
-            "fields": { 
-              "raw": { 
-                "type": "keyword" 
-              } 
-            } 
+      "fire_exists": { 
+        "type": "boolean" 
+      }, 
+      "fire_comment": { 
+        "type": "text", 
+        "analyzer": "polish", 
+        "fields": { 
+          "raw": { 
+            "type": "keyword" 
           } 
         } 
       }, 
