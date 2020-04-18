@@ -5,7 +5,7 @@ After=docker.service
 [Service]
 User=admin
 Group=admin
-ExecStart=/opt/wiating/venvs/image_resizer/bin/python -m image_resizer
+ExecStart=/opt/wiating/venvs/image_resizer/bin/python -m celery -A image_resizer worker --loglevel=info
 Restart=always
 RestartSec=10
 Type=simple
