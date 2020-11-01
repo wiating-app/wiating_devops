@@ -22,3 +22,11 @@
   notify:
       - restart uwsgi wiating
   become: yes
+
+- name: Copy service file
+  copy:
+      src: files/uvicorn_wiating.service
+      dest: /etc/systemd/system/uvicorn_wiating.service
+  notify:
+      - restart uvicorn wiating
+  become: yes

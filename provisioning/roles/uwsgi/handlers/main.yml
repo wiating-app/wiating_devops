@@ -6,3 +6,11 @@
       enabled: yes
       daemon_reload: yes
   become: yes
+
+- name: restart uvicorn wiating
+  service:
+      name: uvicorn_wiating
+      state: restarted
+      enabled: yes
+      daemon_reload: yes
+  become: yes
