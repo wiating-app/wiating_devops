@@ -1,0 +1,59 @@
+---
+version: '3.8'
+services:
+    app:
+        build:
+            context: ./wiating_backend
+        env_file: .env
+        command: flask run --host=0.0.0.0
+        ports:
+            - 5813:5000
+        volumes:
+            - ./wiating_backend:/opt/wiating
+            - ./scripts:/opt/wiating/scripts
+            - ./provisioning/roles:/opt/wiating/devops
+            - images:/images
+        depends_on:
+            - elasticsearch
+            - rabbitmq
+            - image_resizer
+
+    image_resizer:
+        build:
+            context: ./image_resizer
+        env_file: .env
+        command: python3 -m celery -A image_resizer worker --loglevel=info
+        depends_on:
+            - rabbitmq
+        volumes:
+            - ./image_resizer:/opt/image_resizer
+            - images:/images
+
+    elasticsearch:
+        build:
+            context: ./
+            dockerfile: Dockerfile_elasticsearch
+            args:
+                - ELASTIC_VERSION=7.5.1
+        environment:
+            - bootstrap.memory_lock=true
+            - discovery.type=single-node
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        ports:
+            - 9200:9200
+        volumes:
+            - esdata01:/usr/share/elasticsearch/data
+        restart: always
+
+    rabbitmq:
+        image: rabbitmq:latest
+        ports:
+            - 5672:5672
+        restart: always
+
+volumes:
+    esdata01:
+    images:

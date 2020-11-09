@@ -1,0 +1,9 @@
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:wiating-app/frontend.git
+[submodule "image_resizer"]
+	path = image_resizer
+	url = git@github.com:wiating-app/image_resizer.git
+[submodule "wiating_backend"]
+	path = wiating_backend
+	url = git@github.com:wiating-app/wiating_backend.git
