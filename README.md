@@ -1,9 +1,9 @@
-## Run in docker
+## Run in Docker
 
-1. Clone repo with all submodules
-1. If needed edit `.env` file
-1. Execute `docker-compose up`
-1. To initialize database execute `docker-compose exec app bash ./scripts/initialize_database.sh`
+1. Clone repo with all submodules `git clone git@github.com:wiating-app/wiating_devops.git --recursive`
+2. Copy `.env.example` file to `.env` and replace `XXXXX` inside with a correct secrets.
+3. Execute `docker-compose up`
+4. To initialize database execute `docker-compose exec app bash ./scripts/initialize_database.sh`
 
 ## Run in Vagrant
 
