@@ -54,6 +54,20 @@ services:
             - 5672:5672
         restart: always
 
+    frontend:
+        restart: always
+        build:
+            context: ./frontend
+        env_file: .env
+        volumes:
+            - ./frontend:/code
+            # https://github.com/BretFisher/node-docker-good-defaults/blob/b13c648411335fbd6927b4421319e1bf2dad05a3/docker-compose.yml#L29
+            # prevent host node_modules from accidently getting mounted in container
+            - /code/node_modules
+        ports:
+            - 3000:3000
+        stdin_open: true
+        command: yarn start
 volumes:
     esdata01:
     images:
