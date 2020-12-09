@@ -17,6 +17,7 @@ services:
             - elasticsearch
             - rabbitmq
             - image_resizer
+            - redis
 
     image_resizer:
         build:
