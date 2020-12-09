@@ -54,6 +54,9 @@ services:
             - 5672:5672
         restart: always
 
+    redis:
+        image: redis:6.0.9
+
     frontend:
         restart: always
         build:
