@@ -5,7 +5,7 @@ services:
         build:
             context: ./wiating_backend
         env_file: .env
-        command: flask run --host=0.0.0.0
+        command: uvicorn wiating_backend.main:app --reload --log-level trace --host 0.0.0.0 --port 5000
         ports:
             - 5813:5000
         volumes:
