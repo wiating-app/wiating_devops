@@ -16,7 +16,7 @@ services:
         soft: -1
         hard: -1
     ports:
-      - 127.0.0.1:9200:9200
+      - 9200:9200
     volumes:
       - esdata01:/usr/share/elasticsearch/data
     restart: always
@@ -24,7 +24,7 @@ services:
   rabbitmq:
     image: rabbitmq:latest
     ports:
-        - 127.0.0.1:5672:5672
+        - 5672:5672
     restart: always
 
 volumes:

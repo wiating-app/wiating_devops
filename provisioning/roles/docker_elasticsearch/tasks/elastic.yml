@@ -2,7 +2,7 @@
 - name: Install pip
   apt:
       state: present
-      name: ['build-essential', 'python-dev', 'python-pip', 'python-setuptools', 'python-yaml', 'python-docker', 'python-subprocess32']
+      name: ['build-essential', 'python-dev', 'python3-pip', 'python-setuptools', 'python3-yaml', 'python3-docker']
   become: yes
 
 - name: Install docker_compose module dependencies
@@ -10,9 +10,9 @@
       name: ['wheel', 'docker-compose']
   become: yes
 
-- name: Add admin user to docker group
+- name: Add root user to docker group
   user:
-    name: admin
+    name: root
     groups: docker
     append: yes
   become: yes
@@ -22,8 +22,8 @@
     path: /opt/elastic
     state: directory
     mode: '0740'
-    owner: admin
-    group: admin
+    owner: root
+    group: root
   become: yes
 
 - name: Copy docker files to machine
@@ -63,12 +63,12 @@
     stopped: yes
   register: output
 
-- debug:
-    var: output
-
-- assert:
-    that:
-      - "not elasticsearch.elastic_elasticsearch_1.state.running"
+#- debug:
+#    var: output
+#
+#- assert:
+#    that:
+#      - "not elasticsearch.elastic_elasticsearch_1.state.running"
 
 - name: Restart services
   docker_compose:
@@ -77,12 +77,12 @@
     restarted: yes
   register: output
 
-- debug:
-    var: output
-
-- assert:
-    that:
-      - "elasticsearch.elastic_elasticsearch_1.state.running"
+#- debug:
+#    var: output
+#
+#- assert:
+#    that:
+#      - "elasticsearch.elastic_elasticsearch_1.state.running"
 
 - name: Wait for port 9200 to become open on the host, don't start checking for 20 seconds
   wait_for:

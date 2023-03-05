@@ -4,8 +4,8 @@
     path: /opt/wiating
     state: directory
     mode: '0750'
-    owner: admin
-    group: admin
+    owner: root
+    group: root
   become: yes
 
 - name: Install wiating_backend package

@@ -83,6 +83,9 @@
       },
       "report_reason": {
         "type": "keyword"
+      },
+      "unpublished": {
+        "type": "boolean"
       }
     } 
   } 

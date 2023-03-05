@@ -1,20 +1,20 @@
 ---
 - hosts: all
   roles:
-      - role: tools
-      - role: python
-      - role: geerlingguy.rabbitmq
-        become: yes
-        vars:
-            rabbitmq_version: "3.7.23"
-      - role: nginxinc.nginx
-        become: yes
-      - role: nginx_config
-      - role: geerlingguy.docker
-        become: yes
-        vars:
-            docker_install_compose: true
-      - role: docker_elasticsearch
-      - role: wiating_backend
-      - role: image_resizer
-      - role: uwsgi
+          - role: tools
+          - role: python
+#          - role: geerlingguy.rabbitmq
+#            become: yes
+#            vars:
+#              rabbitmq_version: "3.8.9"
+          - role: nginxinc.nginx
+            become: yes
+          - role: nginx_config
+          - role: ansible-role-docker
+            become: yes
+            vars:
+                docker_install_compose: true
+          - role: docker_elasticsearch
+          - role: wiating_backend
+          - role: image_resizer
+          - role: uwsgi

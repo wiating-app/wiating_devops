@@ -1,7 +1,7 @@
 ---
 - name: Install necessary tools
   apt:
-      name: ['mc', 'htop', 'curl', 'vim', 'git', 'certbot', 'python-certbot-nginx', 'screen']
+      name: ['mc', 'htop', 'curl', 'vim', 'git', 'certbot', 'python3-certbot-nginx', 'screen']
       state: latest
       update_cache: yes
   become: yes
