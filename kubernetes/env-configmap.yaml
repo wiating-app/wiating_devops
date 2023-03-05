@@ -1,0 +1,28 @@
+apiVersion: v1
+data:
+  AUTH0_CLIENT_ID: XXXXX
+  AUTH0_CLIENT_SECRET: XXXXX
+  AUTH0_DOMAIN: wiating.auth0.com
+  ES_CONNECTION_STRING: http://elasticsearch
+  FLASK_APP: /opt/wiating/wiating_backend.app.py
+  FLASK_STATIC_FOLDER: /images
+  FLASK_STATIC_PATH: /images
+  FRONTEND_API_URL: http://localhost:5813
+  FRONTEND_AUTH0_CLIENT: XXXXX
+  FRONTEND_AUTH0_METADATA_OBJECT_KEY: https://mapa.wiating.eu/app_metadata
+  FRONTEND_AUTH0_MODERATOR_ROLE: moderator
+  FRONTEND_CDN_URL: http://localhost:5813/images
+  FRONTEND_MAINTENANCE: "false"
+  IMAGE_RESIZER_QUEUE: ir_staging
+  INDEX_NAME: w_staging
+  RABBITMQ_HOST: rabbitmq
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
+  S3_BUCKET: file:///images
+  SECRET_KEY: XXXXX
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app-env
+  name: env

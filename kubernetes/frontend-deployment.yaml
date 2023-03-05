@@ -1,0 +1,152 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../docker-compose.yml
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: frontend
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../docker-compose.yml
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/wiating-devops-default: "true"
+        io.kompose.service: frontend
+    spec:
+      containers:
+        - args:
+            - yarn
+            - start
+          env:
+            - name: AUTH0_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: AUTH0_CLIENT_ID
+                  name: env
+            - name: AUTH0_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: AUTH0_CLIENT_SECRET
+                  name: env
+            - name: AUTH0_DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  key: AUTH0_DOMAIN
+                  name: env
+            - name: ES_CONNECTION_STRING
+              valueFrom:
+                configMapKeyRef:
+                  key: ES_CONNECTION_STRING
+                  name: env
+            - name: FLASK_APP
+              valueFrom:
+                configMapKeyRef:
+                  key: FLASK_APP
+                  name: env
+            - name: FLASK_STATIC_FOLDER
+              valueFrom:
+                configMapKeyRef:
+                  key: FLASK_STATIC_FOLDER
+                  name: env
+            - name: FLASK_STATIC_PATH
+              valueFrom:
+                configMapKeyRef:
+                  key: FLASK_STATIC_PATH
+                  name: env
+            - name: FRONTEND_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: FRONTEND_API_URL
+                  name: env
+            - name: FRONTEND_AUTH0_CLIENT
+              valueFrom:
+                configMapKeyRef:
+                  key: FRONTEND_AUTH0_CLIENT
+                  name: env
+            - name: FRONTEND_AUTH0_METADATA_OBJECT_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: FRONTEND_AUTH0_METADATA_OBJECT_KEY
+                  name: env
+            - name: FRONTEND_AUTH0_MODERATOR_ROLE
+              valueFrom:
+                configMapKeyRef:
+                  key: FRONTEND_AUTH0_MODERATOR_ROLE
+                  name: env
+            - name: FRONTEND_CDN_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: FRONTEND_CDN_URL
+                  name: env
+            - name: FRONTEND_MAINTENANCE
+              valueFrom:
+                configMapKeyRef:
+                  key: FRONTEND_MAINTENANCE
+                  name: env
+            - name: IMAGE_RESIZER_QUEUE
+              valueFrom:
+                configMapKeyRef:
+                  key: IMAGE_RESIZER_QUEUE
+                  name: env
+            - name: INDEX_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: INDEX_NAME
+                  name: env
+            - name: RABBITMQ_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: RABBITMQ_HOST
+                  name: env
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_HOST
+                  name: env
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_PORT
+                  name: env
+            - name: S3_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  key: S3_BUCKET
+                  name: env
+            - name: SECRET_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: SECRET_KEY
+                  name: env
+          image: frontend
+          name: frontend
+          ports:
+            - containerPort: 3000
+          resources: {}
+          stdin: true
+          volumeMounts:
+            - mountPath: /code
+              name: frontend-claim0
+            - mountPath: /code/node_modules
+              name: frontend-claim1
+      restartPolicy: Always
+      volumes:
+        - name: frontend-claim0
+          persistentVolumeClaim:
+            claimName: frontend-claim0
+        - name: frontend-claim1
+          persistentVolumeClaim:
+            claimName: frontend-claim1
+status: {}
